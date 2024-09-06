@@ -1,0 +1,11 @@
+workflowVersion: 1.0.0
+sources:
+    TrainTravel-OAS:
+        inputs:
+            - location: ../openapi.yaml
+        registry:
+            location: registry.speakeasyapi.dev/wiremock/wiremock/train-travel-oas
+targets:
+    train-travel:
+        target: typescript
+        source: TrainTravel-OAS

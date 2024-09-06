@@ -1,0 +1,27 @@
+speakeasyVersion: 1.390.8
+sources:
+    TrainTravel-OAS:
+        sourceNamespace: train-travel-oas
+        sourceRevisionDigest: sha256:21f3264a9fc354265091b159396e6782d4ed3d5de66399e10b30d6737e4d0d33
+        sourceBlobDigest: sha256:4bb03c8c9ec6597a2dd849b847e8b19e50f91d6f55f3302fa2ab61c390d47bad
+        tags:
+            - latest
+targets:
+    train-travel:
+        source: TrainTravel-OAS
+        sourceNamespace: train-travel-oas
+        sourceRevisionDigest: sha256:21f3264a9fc354265091b159396e6782d4ed3d5de66399e10b30d6737e4d0d33
+        sourceBlobDigest: sha256:4bb03c8c9ec6597a2dd849b847e8b19e50f91d6f55f3302fa2ab61c390d47bad
+        outLocation: /Users/tomakehurst/dev/wiremock/demos/train-travel-demo/train-travel-typescript
+workflow:
+    workflowVersion: 1.0.0
+    sources:
+        TrainTravel-OAS:
+            inputs:
+                - location: ../openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/wiremock/wiremock/train-travel-oas
+    targets:
+        train-travel:
+            target: typescript
+            source: TrainTravel-OAS
