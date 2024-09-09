@@ -1,6 +1,7 @@
 {
-  "name": "train-travel",
-  "version": "0.0.1",
+  "name": "@wiremock-inc/train-travel-demo",
+  "repository": "github:wiremock-inc/train-travel-demo",
+  "version": "0.0.2",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,

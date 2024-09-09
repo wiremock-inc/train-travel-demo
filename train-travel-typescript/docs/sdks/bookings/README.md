@@ -93,7 +93,6 @@ A booking is a temporary hold on a trip. It is not confirmed until the payment i
 ### Example Usage
 
 ```typescript
-import { openAsBlob } from "node:fs";
 import { TrainTravel } from "train-travel";
 
 const trainTravel = new TrainTravel({
@@ -101,7 +100,10 @@ const trainTravel = new TrainTravel({
 });
 
 async function run() {
-  const result = await trainTravel.bookings.createBooking(await openAsBlob("example.file"));
+  const result = await trainTravel.bookings.createBooking({
+    tripId: "4f4e4e1-c824-4d63-b37a-d8d698862f1d",
+    passengerName: "John Doe",
+  });
   
   // Handle the result
   console.log(result)
@@ -115,7 +117,6 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { openAsBlob } from "node:fs";
 import { TrainTravelCore } from "train-travel/core.js";
 import { bookingsCreateBooking } from "train-travel/funcs/bookingsCreateBooking.js";
 
@@ -126,7 +127,10 @@ const trainTravel = new TrainTravelCore({
 });
 
 async function run() {
-  const res = await bookingsCreateBooking(trainTravel, await openAsBlob("example.file"));
+  const res = await bookingsCreateBooking(trainTravel, {
+    tripId: "4f4e4e1-c824-4d63-b37a-d8d698862f1d",
+    passengerName: "John Doe",
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -145,7 +149,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [ReadableStream<Uint8Array>](../../models/components/bookinginput.md)                                                                                                          | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [components.BookingInput](../../models/components/bookinginput.md)                                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

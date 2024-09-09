@@ -9,6 +9,7 @@ import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import {
     ConnectionError,
     InvalidRequestError,
@@ -20,7 +21,6 @@ import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
-import * as z from "zod";
 
 export enum CreateBookingAcceptEnum {
     applicationJson = "application/json",
@@ -35,7 +35,7 @@ export enum CreateBookingAcceptEnum {
  */
 export async function bookingsCreateBooking(
     client$: TrainTravelCore,
-    request: ReadableStream<Uint8Array> | Blob | ArrayBuffer | Buffer,
+    request: components.BookingInput,
     options?: RequestOptions & { acceptHeaderOverride?: CreateBookingAcceptEnum }
 ): Promise<
     Result<
@@ -53,15 +53,7 @@ export async function bookingsCreateBooking(
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) =>
-            z
-                .union([
-                    z.instanceof(ReadableStream<Uint8Array>),
-                    z.instanceof(Blob),
-                    z.instanceof(ArrayBuffer),
-                    z.instanceof(Buffer),
-                ])
-                .parse(value$),
+        (value$) => components.BookingInput$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {

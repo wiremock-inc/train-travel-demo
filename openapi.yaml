@@ -350,9 +350,9 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Booking'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Booking'
+          # application/xml:
+          #   schema:
+          #     $ref: '#/components/schemas/Booking'
       responses:
         '201':
           description: Booking successful

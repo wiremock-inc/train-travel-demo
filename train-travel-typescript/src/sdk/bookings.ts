@@ -7,6 +7,7 @@ import { bookingsDeleteBooking } from "../funcs/bookingsDeleteBooking.js";
 import { bookingsGetBooking, GetBookingAcceptEnum } from "../funcs/bookingsGetBooking.js";
 import { bookingsGetBookings, GetBookingsAcceptEnum } from "../funcs/bookingsGetBookings.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
@@ -36,7 +37,7 @@ export class Bookings extends ClientSDK {
      * A booking is a temporary hold on a trip. It is not confirmed until the payment is processed.
      */
     async createBooking(
-        request: ReadableStream<Uint8Array> | Blob | ArrayBuffer | Buffer,
+        request: components.BookingInput,
         options?: RequestOptions & { acceptHeaderOverride?: CreateBookingAcceptEnum }
     ): Promise<operations.CreateBookingResponse> {
         return unwrapAsync(bookingsCreateBooking(this, request, options));

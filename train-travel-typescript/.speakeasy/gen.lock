@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: fa71657b-28e0-42d8-bb82-ddaafaa336a2
 management:
-  docChecksum: ad5cec87781c65b69b50acb34bc48ead
+  docChecksum: ca5aca29f53a279344c71a2e7ab24348
   docVersion: 1.0.0
   speakeasyVersion: 1.390.8
   generationVersion: 2.409.8
-  releaseVersion: 0.0.1
-  configChecksum: 86205d991d77e070a0710e45a96093a4
+  releaseVersion: 0.0.2
+  configChecksum: 91e7732dede1653bede71cdc6681e3a8
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -87,6 +87,7 @@ generatedFiles:
   - src/models/components/trip.ts
   - src/models/components/booking.ts
   - src/models/components/linksself.ts
+  - src/models/components/bookinginput.ts
   - src/models/components/linksbooking.ts
   - src/models/components/bookingpayment.ts
   - src/models/components/security.ts
